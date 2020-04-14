@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buzzer !</title>
+  <link rel="stylesheet" href="./style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="./icons/icon-256.png">
+  <meta name="theme-color" content="#000051" />
+</head>
+
+<body>
+  <header>
+    <h1>Buzzer !</h1>
+
+  </header>
+  <main>
+    <div id="result"><big>Serveur Hors Connexion</big>
+      <p>Le serveur n'est pas joignable, contactez l'administrateur ou revenez plus tards</p>
+    </div>
+  </main>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1a237e;
+      color: white;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    button:disabled {
+      display: none;
+    }
+
+    header {
+      display: flex;
+      background: #000051;
+      align-items: center;
+      padding: 0 15px;
+    }
+
+    main {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #534bae;
+      padding: 30px 15px;
+    }
+
+    input {
+      color: white;
+      background: #534bae;
+      border: 1px solid white;
+      padding: 5px;
+      margin-left: 30px;
+    }
+
+    #sendName {
+      background: white;
+      color: #000051;
+      border: 1px solid white;
+      border-radius: 0;
+      padding: 5px 15px;
+    }
+
+    #buzzer {
+      background: transparent;
+      border: none;
+      background: url(./burger.svg);
+      background-size: 100% 100%;
+      width: 250px;
+      height: 250px;
+      font-size: 70px;
+      color: white;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      font-weight: bold;
+    }
+
+    big {
+      display: block;
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    #yourId {
+      font-size: 11px;
+      flex: 1 1 auto;
+      text-align: right;
+    }
+
+    footer strong {
+      font-size: 18px;
+    }
+
+    li span {
+      display: inline-block;
+      background: #000051;
+      border-radius: 1000px;
+      padding: 3px 5px;
+      font-size: 12px;
+      margin: 3px 5px;
+      font-weight: bold;
+    }
+
+    li span.success-counter {
+      background: #4caf50;
+      color: black;
+    }
+
+    @media (max-width: 560px) {
+      header {
+        flex-wrap: wrap;
+        padding-bottom: 30px;
+      }
+
+      input {
+        order: 3;
+        flex: 1 1 auto;
+        margin-left: 0;
+      }
+
+      header button {
+        order: 4;
+      }
+    }
+  </style>
+</body>
+
+</html>

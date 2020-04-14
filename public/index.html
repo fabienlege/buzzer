@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buzzer !</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="./icons/icon-256.png">
+  <meta name="theme-color" content="#000051" />
 </head>
 
 <body>
@@ -16,7 +22,7 @@
     <div id="yourId"></div>
   </header>
   <main>
-    <button id="buzzer" disabled>Buzz !</button>
+    <button id="buzzer" disabled></button>
     <div id="result"></div>
   </main>
   <footer>
@@ -25,8 +31,13 @@
     </ul>
     <button id="release" disabled>Redémarrer</button>
     <button id="raz" disabled>R.A.Z</button>
+    <audio id="sound1">
+      <source src="./746.mp3" type="audio/mp3">
+    </audio>
+
   </footer>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="./nosleep.js"></script>
   <script src="./scripts.js"></script>
 </body>
 

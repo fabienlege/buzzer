@@ -1,5 +1,6 @@
 var uid = null;
 var clients = [];
+var noSleep = new NoSleep();
 
 var socket = io.connect(document.location.protocol + '//' + document.location.host);
 // Get UID
@@ -15,6 +16,7 @@ socket.on('uid', function (d) {
 document.getElementById('sendName').onclick = function () {
   socket.emit('setName', { uid: uid, name: document.getElementById('yourName').value });
   document.getElementById('yourName').value = '';
+  noSleep.enable()
 }
 
 //Get Clients
@@ -42,6 +44,7 @@ socket.on('buzzed', winner => {
   if (winner !== null) {
     document.getElementById('buzzer').setAttribute('disabled', true);
     document.getElementById('result').innerHTML = `le gagnant est <big>${winner.name}</big><small>${winner.uid}</small>`;
+    document.getElementById('sound1').play()
   }
   else {
     document.getElementById('buzzer').removeAttribute('disabled');
@@ -54,4 +57,16 @@ document.getElementById('release').onclick = () => {
 }
 document.getElementById('raz').onclick = () => {
   socket.emit('raz', uid);
+}
+
+
+//PWA
+// CODELAB: Register service worker.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((reg) => {
+        console.log('Service worker registered.', reg);
+      });
+  });
 }

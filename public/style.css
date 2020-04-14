@@ -55,9 +55,10 @@ input {
 }
 
 #buzzer {
-  border-radius: 2000px;
-  background: #b71c1c;
-  border: 2px solid white;
+  background: transparent;
+  border: none;
+  background: url(./burger.svg);
+  background-size: 100% 100%;
   width: 250px;
   height: 250px;
   font-size: 70px;
@@ -80,6 +81,20 @@ big {
 
 footer strong {
   font-size: 18px;
+}
+
+li span {
+  display: inline-block;
+  background: #000051;
+  border-radius: 1000px;
+  padding: 3px 5px;
+  font-size: 12px;
+  margin: 3px 5px;
+  font-weight: bold;
+}
+li span.success-counter {
+  background: #4caf50;
+  color: black;
 }
 
 @media (max-width: 560px) {
