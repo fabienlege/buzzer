@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buzzer !</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Buzzer !</h1>
+    <input type="text" id="yourName" placeholder="chargement" disabled>
+    <button id="sendName">Ok</button>
+    <div id="yourId"></div>
+  </header>
+  <main>
+    <button id="buzzer" disabled>Buzz !</button>
+    <div id="result"></div>
+  </main>
+  <footer>
+    <strong>Joueurs : </strong>
+    <ul id="userList">
+    </ul>
+    <button id="release" disabled>Redémarrer</button>
+    <button id="raz" disabled>R.A.Z</button>
+  </footer>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./scripts.js"></script>
+</body>
+
+</html>
