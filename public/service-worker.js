@@ -18,7 +18,7 @@
 'use strict';
 
 // CODELAB: Update cache names any time any of the cached files change.
-const CACHE_NAME = 'buzzer-cache-v0.0.2.2';
+const CACHE_NAME = 'buzzer-cache-v0.0.3.0';
 
 // CODELAB: Add list of files to cache here.
 const FILES_TO_CACHE = [

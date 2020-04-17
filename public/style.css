@@ -84,13 +84,30 @@ footer strong {
   font-size: 18px;
 }
 
+footer ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+footer ul li {
+  display: block;
+  padding: 3px 3px 3px 7px;
+  border-radius: 3000px;
+  background: rgba(255, 255, 255, 0.3);
+  line-height: 1;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 3px;
+}
+
 li span {
   display: inline-block;
-  background: #000051;
+  background: #c62828;
   border-radius: 1000px;
   padding: 3px 5px;
   font-size: 12px;
-  margin: 3px 5px;
+  margin-left: 3px;
   font-weight: bold;
 }
 li span.success-counter {

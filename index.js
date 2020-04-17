@@ -16,7 +16,6 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
-var uid = require('uid');
 
 server.listen(8080)
 
@@ -26,7 +25,7 @@ app.use(express.static('public'))
 var clients = [];
 var emptyClient = {
   uid: null,
-  name: null,
+  name: "Sans nom",
   buzz: 0,
   successBuzz: 0,
   isAdmin: false
@@ -39,17 +38,30 @@ buzz = null
 // Quand un client se connecte, on le note dans la console
 io.sockets.on('connection', function (socket) {
   console.log('Un client est connecté !');
-  socket.emit('uid', uid(16));
+  socket.emit('uid', socket.id);
   socket.emit('buzzed', buzz === null ? null : clients[buzz])
+  clients.push({ ...emptyClient, uid: socket.id })
+
+  //Déconnexion
+  socket.on('disconnect', () => {
+    let index = clients.findIndex(r => r.uid === socket.id)
+    if (index === buzz) {
+      buzz = null;
+      socket.broadcast.emit('buzzed', null)
+    }
+    clients.splice(index, 1);
+    socket.broadcast.emit('clients', clients)
+  });
 
   // Receive Name
   socket.on('setName', function (data) {
-    let index = clients.findIndex(r => r.uid === data.uid)
-    if (index > -1) {
-      clients[index].name = data.name;
+    let index = clients.findIndex(r => r.uid === socket.id)
+    if (data.name === "admin6440") {
+      clients[index].name = "Administrateur";
+      clients[index].isAdmin = true;
     }
     else {
-      clients.push({ ...emptyClient, uid: data.uid, name: data.name === 'admin6440' ? '****' : data.name, isAdmin: data.name === 'admin6440' });
+      clients[index].name = data.name;
     }
     socket.emit('clients', clients)
     socket.broadcast.emit('clients', clients)
@@ -58,7 +70,7 @@ io.sockets.on('connection', function (socket) {
 
   //receive Buzz
   socket.on('buzz', uid => {
-    let index = clients.findIndex(r => r.uid === uid)
+    let index = clients.findIndex(r => r.uid === socket.id)
     if (index > -1) {
       clients[index].buzz++;
       if (buzz === null) {
@@ -74,9 +86,7 @@ io.sockets.on('connection', function (socket) {
 
   // Release
   socket.on('release', uid => {
-    console.log(uid);
-    let index = clients.findIndex(c => c.uid === uid && c.isAdmin)
-    console.log(index)
+    let index = clients.findIndex(c => c.uid === socket.id && c.isAdmin)
     if (index > -1) {
       buzz = null;
       socket.emit('buzzed', buzz)
@@ -85,9 +95,7 @@ io.sockets.on('connection', function (socket) {
   })
 
   socket.on('raz', uid => {
-    console.log(uid);
-    let index = clients.findIndex(c => c.uid === uid && c.isAdmin)
-    console.log(index)
+    let index = clients.findIndex(c => c.uid === socket.id && c.isAdmin)
     if (index > -1) {
       buzz = null;
       clients = [];

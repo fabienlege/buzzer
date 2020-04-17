@@ -25,7 +25,7 @@ socket.on('clients', datas => {
   document.getElementById('userList').innerHTML = '';
   clients.map(c => {
     if (!c.isAdmin) {
-      document.getElementById('userList').innerHTML += `<li data-uid="${c.uid}">${c.name}<span class="buuz-counter">${c.buzz}</span><span class="success-counter">${c.successBuzz}</span></li>`;
+      document.getElementById('userList').innerHTML += `<li data-uid="${c.uid}">${c.name}${c.buzz !== c.successBuzz ? `<span class="buuz-counter">${c.buzz - c.successBuzz}</span>` : ''}<span class="success-counter">${c.successBuzz}</span></li>`;
     }
   })
   if (clients.findIndex(c => c.uid === uid && c.isAdmin) > -1) {
@@ -43,7 +43,10 @@ document.getElementById('buzzer').onclick = () => {
 socket.on('buzzed', winner => {
   if (winner !== null) {
     document.getElementById('buzzer').setAttribute('disabled', true);
-    document.getElementById('result').innerHTML = `le gagnant est <big>${winner.name}</big><small>${winner.uid}</small>`;
+    document.getElementById('result').innerHTML = `le gagnant est <big>${winner.name}</big>`;
+    if (winner.uid === uid) {
+      document.getElementById('result').innerHTML += "<strong>Bravo champion ;)</strong>"
+    }
     document.getElementById('sound1').play()
   }
   else {
