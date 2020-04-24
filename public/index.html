@@ -17,28 +17,35 @@
 <body>
   <header>
     <h1>Buzzer !</h1>
-    <input type="text" id="yourName" placeholder="chargement" disabled>
-    <button id="sendName">Ok</button>
+    <!--<input type="text" id="yourName" placeholder="Rechercher une partie" disabled>
+    <button id="sendName">🔍</button>-->
+    <div id="yourName">Choisissez une partie à rejoindre</div>
     <div id="yourId"></div>
   </header>
-  <main>
-    <button id="buzzer" disabled></button>
-    <div id="result"></div>
+  <main id="roomlist">
+    Chargement...
   </main>
-  <footer>
-    <strong>Joueurs : </strong>
-    <ul id="userList">
-    </ul>
-    <button id="release" disabled>Redémarrer</button>
-    <button id="raz" disabled>R.A.Z</button>
-    <audio id="sound1">
-      <source src="./746.mp3" type="audio/mp3">
-    </audio>
-
-  </footer>
+  <button id="create-room" title="Créer une nouvelle partie">＋</button>
+  <div class="overlay" id="create-room-overlay">
+    <div class="dialog">
+      <h3>Créer une nouvelle partie</h3>
+      <form id="form-creation">
+        <input type="text" id="room-name" placeholder="Nom de la partie" required="required"><br><br>
+        <input type="text" id="room-adminpass" placeholder="Mot de passe administrateur" required="required"><br>
+        <p><i>Toutes les personnes qui connaitrons le mot de passe administrateur ci-dessus pourront prendre le contrôle
+            de la partie (et notamment libérer le buzzer)</i></p><br>
+        <input type="text" id="room-password" placeholder="Mot de passe de la partie"><br>
+        <p><i>Si vous laissez le champ "mot de passe" ci-dessus vide, la partie ne sera pas protégée par mot de
+            passe. Si vous saisissez un mot de passe, seuls les personnes connaissant ce mot de passe pourront accéder à
+            la partie</i>
+        </p>
+        <button id="post-room">Créer la partie</button>
+      </form>
+    </div>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="./nosleep.js"></script>
-  <script src="./scripts.js"></script>
+  <script src="./index.js"></script>
 </body>
 
 </html>

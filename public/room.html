@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buzzer !</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="./icons/icon-256.png">
+  <meta name="theme-color" content="#000051" />
+</head>
+
+<body>
+  <header>
+    <h1>Buzzer !</h1>
+    <input type="text" id="yourName" placeholder="chargement" disabled>
+    <button id="sendName">Ok</button>
+    <div id="yourId"></div>
+    <button title="Devenir administrateur" id="logAdmin">🔓</button>
+  </header>
+  <p class="error-message" id="noAdminError">Aucun administrateur ne gère cette partie. Si vous êtes l'administrateur
+    entrez le mot de
+    passe administrateur en cliquant sur le cadenas en haut à droite</p>
+  <main>
+    <button id="buzzer" disabled></button>
+    <div id="result"></div>
+  </main>
+  <footer>
+    <strong>Joueurs : </strong>
+    <ul id="userList">
+    </ul>
+    <button id="release" disabled>Libérer le buzzer</button>
+    <button id="raz" disabled>R.A.Z</button>
+    <audio id="sound1">
+      <source src="./746.mp3" type="audio/mp3">
+    </audio>
+
+  </footer>
+  <div id="password-overlay" class="overlay">
+    <div class="dialog">
+      <h3>Mot de passe</h3>
+      <p>Cette partie nécessite que vous entriez un mot de passe pour la rejoindre</p>
+      <p class="error-message hide" id="bad-password">Le mot de passe est incorrectf, réessayez</p>
+      <input type="text" id="room-password" placeholder="Mot de passe">
+      <button id="login">Valider</button>
+    </div>
+  </div>
+  <div id="admin-overlay" class="overlay">
+    <div class="dialog">
+      <h3>Mot de passe Administrateur</h3>
+      <p>Pour prendre le contrôle de cette partie, entrez votre mot le passe administrateur</p>
+      <p class="error-message hide" id="bad-password-admin">Le mot de passe est incorrectf, réessayez</p>
+      <input type="text" id="admin-password" placeholder="Mot de passe">
+      <button id="loginAdmin">Valider</button>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./nosleep.js"></script>
+  <script src="./room.js"></script>
+</body>
+
+</html>
