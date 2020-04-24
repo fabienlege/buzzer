@@ -17,11 +17,11 @@ var fs = require('fs');
 var app = express();
 var clone = require('clone')
 //debugmode only :
-var server = require('http').Server(app)
-/*var server = require('https').Server({
+//var server = require('http').Server(app)
+var server = require('https').Server({
   key: fs.readFileSync("/etc/letsencrypt/live/fabienlege.com/privkey.pem"),
   cert: fs.readFileSync("/etc/letsencrypt/live/fabienlege.com/fullchain.pem")
-}, app);*/
+}, app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
